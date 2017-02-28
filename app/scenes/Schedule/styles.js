@@ -25,7 +25,6 @@ export default styles = StyleSheet.create({
   },
   sceneContainer: {
     flex: 1,
-    marginTop: 20,
     padding: 15,
     backgroundColor: '#F5FCFF',
   },

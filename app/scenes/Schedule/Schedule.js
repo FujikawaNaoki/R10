@@ -19,7 +19,7 @@ export default Schedule = ({isLoading, dataSource}) => (
     <View style={styles.logoContainer}>
       <Image
         style={styles.logo}
-        source={require('../../asset/img/r10_logo.png')}
+        source={require('../../assets/img/r10_logo.png')}
       />
     </View>
     <Text style={styles.description}>Schedule</Text>

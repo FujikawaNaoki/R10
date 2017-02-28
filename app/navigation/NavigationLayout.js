@@ -1,30 +1,49 @@
 import React from 'react';
+import { Text } from 'react-native';
+
 import {
   StackNavigation,
   TabNavigation,
   TabNavigationItem as TabItem,
 } from '@exponent/ex-navigation';
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // Treat the TabScreen route like any other route -- you may want to set
 // it as the initial route for a top-level StackNavigation
 export default class Layout extends React.Component {
+  renderIcon(icon, isSelected) {
+    return (
+      <Icon
+        name={icon}
+        size={30}
+        color={isSelected ? '#fff' : '#999999'} />
+    )
+  }
+
+  renderTitle(text, isSelected) {
+    return (
+      <Text style={[{fontFamily: 'Montserrat'}, isSelected ? { color: '#fff' } : { color: '#999999' }]}>
+        {text}
+      </Text>
+    )
+  }
+
   render() {
+
     return (
       <TabNavigation
         id="main"
         navigatorUID="main"
-        initialTab="schedule">
+        initialTab="schedule"
+        tabBarColor="#000"
+      >
         <TabItem
           id="schedule"
           title="Schedule"
           selectedStyle={styles.selectedTab}
+          renderIcon={isSelected => this.renderIcon("ios-calendar", isSelected)}
+          renderTitle={isSelected => this.renderTitle("Schedule", isSelected)}
         >
           <StackNavigation
             id="schedule"
@@ -36,6 +55,8 @@ export default class Layout extends React.Component {
           id="about"
           title="About"
           selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => this.renderIcon("ios-information-circle", isSelected)}
+          renderTitle={isSelected => this.renderTitle("About", isSelected)}
         >
           <StackNavigation
             id="about"
