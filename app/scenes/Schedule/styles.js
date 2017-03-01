@@ -1,31 +1,39 @@
 import { StyleSheet } from 'react-native';
+import { colors, typography } from '../../config/styles';
 
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'royalblue'
   },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 25,
-    borderBottomWidth: 1,
-    borderBottomColor: '#8E8E8E'
+  row: {
+    backgroundColor: colors.white,
+    padding: 15,
   },
-  logo: {
-    marginBottom: 25,
+  headerText: {
+    fontSize: 18,
+    paddingLeft: 12,
+    paddingTop: 4,
+    paddingBottom: 4,
+    fontFamily: typography.fontMain,
+    backgroundColor: colors.lightGrey,
   },
   title: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
+    fontFamily: typography.fontMain,
+    color: colors.black,
   },
-  description: {
+  location: {
     fontSize: 18,
+    fontFamily: typography.fontMain,
+    color: colors.mediumGrey,
   },
-  sceneContainer: {
+
+
+  separator: {
     flex: 1,
-    padding: 15,
-    backgroundColor: '#F5FCFF',
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
   },
 });

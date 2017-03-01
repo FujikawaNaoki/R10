@@ -1,26 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import Loading from '../../components/Loading';
+
+import formatSessionData from '../../helpers/dataFormatHelpers';
+
 import {
   Text,
+  ListView,
 } from 'react-native';
 
-export default class ScheduleContainer extends Component {
-  constructor() {
-    super();
+import { fetchSchedule } from '../../redux/modules/scheduleActions';
 
-    this.state = {
-      dataSource: [],
-      isLoading: true,
-    };
-  }
-
+class ScheduleContainer extends Component {
   static route = {
     navigationBar: {
       title: 'Schedule',
@@ -28,30 +20,37 @@ export default class ScheduleContainer extends Component {
   }
 
   componentDidMount() {
-    let endpoint = 'https://r10app-95fea.firebaseio.com/code_of_conduct.json';
-
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((result) => {
-        this.setState({ dataSource: result });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
-  }
-  componentDidUpdate() {
-    if (this.state.dataSource && this.state.isLoading) {
-      this.setState({ isLoading: false, });
-    }
+    const { dispatch } = this.props;
+    dispatch(fetchSchedule());
   }
 
   render() {
-    const { isLoading, dataSource } = this.state;
+    const { isLoading, schedule } = this.props;
     return (
       isLoading ?
         <Loading /> :
-        <Schedule isLoading={isLoading} dataSource={dataSource} />
+        <Schedule isLoading={isLoading} schedule={schedule} />
     )
   }
 }
+
+const dataSource = new ListView.DataSource({
+  rowHasChanged: (r1, r2) => r1 !== r2,
+  sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+});
+
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading,
+    schedule: dataSource.cloneWithRowsAndSections(
+      state.schedule.sessionData.dataBlob,
+      state.schedule.sessionData.sectionIds,
+      state.schedule.sessionData.rowIds,
+    ),
+  }
+}
+
+export default connect(mapStateToProps)(ScheduleContainer);
 
 
 
