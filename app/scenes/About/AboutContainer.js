@@ -1,57 +1,42 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import About from './About';
 import Loading from '../../components/Loading';
 import {
   Text,
 } from 'react-native';
 
-export default class AboutContainer extends Component {
-  constructor() {
-    super();
+import { fetchConducts } from '../../redux/modules/conductsActions';
 
-    this.state = {
-      dataSource: [],
-      isLoading: true,
-    };
-  }
-
-    static route = {
+class AboutContainer extends Component {
+  static route = {
     navigationBar: {
       title: 'About',
     }
   }
 
   componentDidMount() {
-    let endpoint = 'https://r10app-95fea.firebaseio.com/code_of_conduct.json';
-
-    fetch(endpoint)
-      .then((response) => response.json())
-      .then((result) => {
-        this.setState({ dataSource: result });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
-  }
-  componentDidUpdate() {
-    if (this.state.dataSource && this.state.isLoading) {
-      this.setState({ isLoading: false, });
-    }
+    const { dispatch } = this.props;
+    dispatch(fetchConducts());
   }
 
   render() {
-    const { isLoading, dataSource } = this.state;
+    const { isLoading, conducts } = this.props;
     return (
       isLoading ?
-      <Loading /> :
-      <About isLoading={isLoading} dataSource={dataSource}/>
+        <Loading /> :
+        <About isLoading={isLoading} conducts={conducts} />
     )
   }
+}
+
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading,
+    conducts: state.conducts,
   }
+}
 
-
+export default connect(mapStateToProps)(AboutContainer);
 
