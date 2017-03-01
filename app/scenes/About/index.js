@@ -1,6 +1,6 @@
-import AboutContainer from './AboutContainer';
-import About from './About';
+import AboutContainer from './AboutContainer'
+import About from './About'
 
-export default AboutContainer;
+export default AboutContainer
 
-export { About } ;
+export { About }

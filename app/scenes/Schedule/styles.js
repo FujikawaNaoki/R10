@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native';
-import { colors, typography } from '../../config/styles';
+import { StyleSheet } from 'react-native'
+import { colors, typography } from '../../config/styles'
 
-export default styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   row: {
     backgroundColor: colors.white,
-    padding: 15,
+    padding: 15
   },
   headerText: {
     fontSize: 18,
@@ -15,25 +15,24 @@ export default styles = StyleSheet.create({
     paddingTop: 4,
     paddingBottom: 4,
     fontFamily: typography.fontMain,
-    backgroundColor: colors.lightGrey,
+    backgroundColor: colors.lightGrey
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
     fontFamily: typography.fontMain,
-    color: colors.black,
+    color: colors.black
   },
   location: {
     fontSize: 18,
     fontFamily: typography.fontMain,
-    color: colors.mediumGrey,
+    color: colors.mediumGrey
   },
-
 
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
-  },
-});
+    backgroundColor: '#8E8E8E'
+  }
+})

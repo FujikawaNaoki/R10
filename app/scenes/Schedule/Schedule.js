@@ -8,23 +8,20 @@ import {
 } from 'react-native';
 
 import { formatSecondsToTime } from '../../helpers/timeFormatHelpers';
+import { goToSession } from '../../helpers/navigationHelpers';
 
 import styles from './styles';
-
-const onRowPress = () => {
-
-}
 
 export default Schedule = ({isLoading, schedule}) => (
   <View style={styles.container}>
     <ListView
       dataSource={schedule}
       renderRow={data => (
-        <TouchableHighlight onPress={onRowPress}>
-        <View style={styles.row}>
+        <TouchableHighlight onPress={() => goToSession('schedule', data)}>
+          <View style={styles.row}>
             <Text style={styles.title}>{data.title}</Text>
             <Text style={styles.location}>{data.location}</Text>
-        </View>
+          </View>
         </TouchableHighlight>
 
       )}

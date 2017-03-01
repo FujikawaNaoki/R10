@@ -20,13 +20,13 @@ export default class Layout extends React.Component {
       <Icon
         name={icon}
         size={30}
-        color={isSelected ? colors.white :  colors.mediumGrey} />
+        color={isSelected ? colors.white : colors.mediumGrey} />
     )
   }
 
   renderTitle(text, isSelected) {
     return (
-      <Text style={[styles.titleText, isSelected ? { color: colors.white} : { color: colors.mediumGrey }]}>
+      <Text style={[styles.titleText, isSelected ? { color: colors.white } : { color: colors.mediumGrey }]}>
         {text}
       </Text>
     )
@@ -50,6 +50,7 @@ export default class Layout extends React.Component {
         >
           <StackNavigation
             id="schedule"
+            navigatorUID="schedule"
             initialRoute={Router.getRoute('schedule')}
           />
         </TabItem>
@@ -63,6 +64,7 @@ export default class Layout extends React.Component {
         >
           <StackNavigation
             id="about"
+            navigatorUID="about"
             initialRoute={Router.getRoute('about')}
           />
         </TabItem>

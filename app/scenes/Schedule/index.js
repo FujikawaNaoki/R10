@@ -1,6 +1,6 @@
-import ScheduleContainer from './ScheduleContainer';
-import Schedule from './Schedule';
+import ScheduleContainer from './ScheduleContainer'
+import Schedule from './Schedule'
 
-export default ScheduleContainer;
+export default ScheduleContainer
 
-export { Schedule } ;
+export { Schedule }

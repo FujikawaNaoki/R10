@@ -1,10 +1,10 @@
-const conductsReducer = (state=[], action) => {
+const conductsReducer = (state = [], action) => {
   switch (action.type) {
     case 'LOAD_CONDUCTS':
-      return action.payload;
+      return action.payload
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default conductsReducer;
+export default conductsReducer

@@ -1,6 +1,6 @@
-import {typography} from '../config/styles';
+import {typography} from '../config/styles'
 export default styles = {
   titleText: {
-    fontFamily: typography.fontMain,
+    fontFamily: typography.fontMain
   }
 }

@@ -1,7 +1,7 @@
-import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import React from 'react'
+import { ActivityIndicator } from 'react-native'
 
 // import styles from './styles'
-export default Conduct = ({title, description}) => (
+export default ({title, description}) => (
   <ActivityIndicator animating={true} size="small" color="black" />
 )

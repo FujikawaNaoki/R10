@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import Loading from '../../components/Loading';
 
-import formatSessionData from '../../helpers/dataFormatHelpers';
+import { formatSessionData } from '../../helpers/dataFormatHelpers';
 
 import {
   Text,
