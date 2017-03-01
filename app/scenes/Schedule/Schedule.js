@@ -1,27 +1,40 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Text,
   Image,
-  ScrollView,
+  ListView,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
-import styles from './styles'
+import { formatSecondsToTime } from '../../helpers/timeFormatHelpers';
 
-export default Schedule = ({isLoading, dataSource}) => (
-  <ScrollView style={styles.sceneContainer}>
-    <View style={styles.logoContainer}>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/img/r10_logo.png')}
-      />
-    </View>
-    <Text style={styles.description}>Schedule</Text>
-    </ScrollView>
+import styles from './styles';
+
+const onRowPress = () => {
+
+}
+
+export default Schedule = ({isLoading, schedule}) => (
+  <View style={styles.container}>
+    <ListView
+      dataSource={schedule}
+      renderRow={data => (
+        <TouchableHighlight onPress={onRowPress}>
+        <View style={styles.row}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.location}>{data.location}</Text>
+        </View>
+        </TouchableHighlight>
+
+      )}
+
+      renderSectionHeader={(data, sectionId) => (
+        <View key={sectionId}>
+          <Text style={styles.headerText}>{formatSecondsToTime(sectionId)}</Text>
+        </View>
+      )}
+      renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+    />
+  </View>
 )
