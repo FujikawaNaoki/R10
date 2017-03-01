@@ -9,6 +9,9 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import styles from './styles';
+import { colors } from '../config/styles';
+
 // Treat the TabScreen route like any other route -- you may want to set
 // it as the initial route for a top-level StackNavigation
 export default class Layout extends React.Component {
@@ -17,13 +20,13 @@ export default class Layout extends React.Component {
       <Icon
         name={icon}
         size={30}
-        color={isSelected ? '#fff' : '#999999'} />
+        color={isSelected ? colors.white :  colors.mediumGrey} />
     )
   }
 
   renderTitle(text, isSelected) {
     return (
-      <Text style={[{fontFamily: 'Montserrat'}, isSelected ? { color: '#fff' } : { color: '#999999' }]}>
+      <Text style={[styles.titleText, isSelected ? { color: colors.white} : { color: colors.mediumGrey }]}>
         {text}
       </Text>
     )
