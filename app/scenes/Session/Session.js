@@ -1,18 +1,53 @@
-import React from 'react';
+import React from 'react'
 import {
   Text,
-  Image,
-  ListView,
-  TouchableHighlight,
   View,
-} from 'react-native';
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native'
 
-const Session = () => {
+import Icon from 'react-native-vector-icons/Ionicons'
+
+import { formatSecondsToTime } from '../../helpers/timeFormatHelpers'
+
+
+import Realm from 'realm'
+import realm, { createFave } from '../../config/models'
+
+import styles from './styles'
+
+const onPressFave = () => {
+
+}
+
+const Session = ({sessionData, speaker}) => {
   return (
-  <View style={styles.container}>
-    <Text>hi</Text>
-  </View>
-  );
-};
+    <ScrollView style={styles.container}>
+      <Text style={styles.location}>{sessionData.location}</Text>
+      <Text style={styles.title}>{sessionData.title}</Text>
+      <Text style={styles.startTime}>{formatSecondsToTime(sessionData.start_time)}</Text>
+      <Text style={styles.description}>{sessionData.description}</Text>
+      <Text style={styles.presentedBy}>Presented By:</Text>
 
-export default Session;
+      <View style={styles.speakerContainer}>
+        <Image
+          style={styles.speakerImage}
+          source={{ uri: speaker.speakerData.image }}
+        />
+        <Text style={styles.speakerName}>{speaker.speakerData.name}</Text>
+      </View>
+
+      <View style={styles.bottomElement}>
+        <TouchableOpacity onPress={onPressFave}>
+          <View style={styles.faveButton}>
+            <Text style={styles.faveButtonText}>Add to Faves</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+    </ScrollView>
+  )
+}
+
+export default Session
