@@ -10,8 +10,8 @@ export default StyleSheet.create({
   title: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     color: '#9963ea'
   },
   description: {
