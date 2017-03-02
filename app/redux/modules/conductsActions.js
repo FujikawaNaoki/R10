@@ -5,7 +5,7 @@ export const loadConducts = conducts => ({
   payload: conducts
 })
 
-export const fetchConducts = lessonId => dispatch => {
+export const fetchConducts = () => dispatch => {
   const endpoint = 'https://r10app-95fea.firebaseio.com/code_of_conduct.json'
 
   dispatch(loadingResource())

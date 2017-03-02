@@ -5,7 +5,7 @@ export const loadSchedule = schedule => ({
   payload: schedule
 })
 
-export const fetchSchedule = lessonId => dispatch => {
+export const fetchSchedule = () => dispatch => {
   const endpoint = 'https://r10app-95fea.firebaseio.com/sessions.json'
 
   dispatch(loadingResource())
