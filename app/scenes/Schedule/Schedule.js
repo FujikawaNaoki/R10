@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   Image,
   ListView,
   TouchableHighlight,
-  View,
-} from 'react-native';
+  View
+} from 'react-native'
 
-import { formatSecondsToTime } from '../../helpers/timeFormatHelpers';
-import { goToSession } from '../../helpers/navigationHelpers';
+import { formatSecondsToTime } from '../../helpers/timeFormatHelpers'
+import { goToSession } from '../../helpers/navigationHelpers'
 
-import styles from './styles';
+import styles from './styles'
 
 export default Schedule = ({isLoading, schedule}) => (
   <View style={styles.container}>
@@ -23,7 +23,6 @@ export default Schedule = ({isLoading, schedule}) => (
             <Text style={styles.location}>{data.location}</Text>
           </View>
         </TouchableHighlight>
-
       )}
 
       renderSectionHeader={(data, sectionId) => (
