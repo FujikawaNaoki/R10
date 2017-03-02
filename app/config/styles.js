@@ -1,3 +1,5 @@
+import {Dimensions} from 'react-native'
+
 export const colors = {
   black: '#000',
   white: '#fff',
@@ -11,4 +13,10 @@ export const colors = {
 export const typography = {
   fontMain: 'Montserrat',
   fontMainLight: 'Montserrat-Light'
+}
+
+
+export const dimensions = {
+  screenWidth: Dimensions.get('window').width,
+  screenHeight: Dimensions.get('window').height
 }
