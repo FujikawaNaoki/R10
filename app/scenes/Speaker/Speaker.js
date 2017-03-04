@@ -3,14 +3,9 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
-  WebView,
   ScrollView,
   Linking,
 } from 'react-native'
-
-import { colors, typography } from '../../config/styles'
-import LinearGradient from 'react-native-linear-gradient';
 
 import styles from './styles'
 

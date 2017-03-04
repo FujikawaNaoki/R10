@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Text,
   Image,
@@ -10,7 +10,7 @@ import Conduct from '../../components/Conduct'
 
 import styles from './styles'
 
-export default About = ({isLoading, conducts}) => (
+const About = ({conducts}) => (
   <ScrollView style={styles.sceneContainer}>
     <View style={styles.logoContainer}>
       <Image
@@ -24,3 +24,5 @@ export default About = ({isLoading, conducts}) => (
     {conducts.map(data => <Conduct key={data.title} title={data.title} description={data.description} />)}
   </ScrollView>
 )
+
+export default About

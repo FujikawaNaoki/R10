@@ -1,7 +1,7 @@
 import React from 'react'
 import MapView from 'react-native-maps';
 
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 import styles from './styles'
 

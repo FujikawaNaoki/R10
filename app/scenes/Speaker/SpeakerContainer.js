@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Speaker from './Speaker';
 
 import {colors, typography} from '../../config/styles';
@@ -21,9 +20,7 @@ class SpeakerContainer extends Component {
   render() {
     const { speakerData } = this.props
     return (
-        <Speaker 
-          speakerData={speakerData}
-        />
+        <Speaker speakerData={speakerData} />
     )
   }
 }

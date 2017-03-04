@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 
 import About from './About';
 import Loading from '../../components/Loading';
-import {
-  Text,
-} from 'react-native';
 
 import { fetchConducts } from '../../redux/modules/conductsActions';
 
