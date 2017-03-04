@@ -1,53 +1,60 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
   Text,
   View,
   Image,
   ScrollView,
   TouchableOpacity,
-} from 'react-native'
 
+} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import { formatSecondsToTime } from '../../helpers/timeFormatHelpers'
-
-
-import Realm from 'realm'
-import realm, { createFave } from '../../config/models'
+import { toggleFave } from '../../redux/modules/favesActions'
+import { goToSpeaker } from '../../helpers/navigationHelpers'
 
 import styles from './styles'
+import { colors, platformIcons } from '../../config/styles'
 
-const onPressFave = () => {
+import Button from '../../components/Button'
 
-}
-
-const Session = ({sessionData, speaker}) => {
+const Session = ({ sessionData, speaker, isFave, dispatch }) => {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.location}>{sessionData.location}</Text>
+      <View style={styles.faveContainer}>
+        <Text style={styles.location}>{sessionData.location}</Text>
+        {
+          isFave &&
+          <Icon
+            name={platformIcons.heart}
+            size={25}
+            color={colors.red}
+          />
+        }
+      </View>
       <Text style={styles.title}>{sessionData.title}</Text>
       <Text style={styles.startTime}>{formatSecondsToTime(sessionData.start_time)}</Text>
       <Text style={styles.description}>{sessionData.description}</Text>
       <Text style={styles.presentedBy}>Presented By:</Text>
 
       <View style={styles.speakerContainer}>
-        <Image
-          style={styles.speakerImage}
-          source={{ uri: speaker.speakerData.image }}
-        />
-        <Text style={styles.speakerName}>{speaker.speakerData.name}</Text>
+        <TouchableOpacity onPress={() => goToSpeaker(speaker)}>
+          <Image
+            style={styles.speakerImage}
+            source={{ uri: speaker.image }}
+          />
+        </TouchableOpacity>
+        <Text style={styles.speakerName}>{speaker.name}</Text>
       </View>
 
-      <View style={styles.bottomElement}>
-        <TouchableOpacity onPress={onPressFave}>
-          <View style={styles.faveButton}>
-            <Text style={styles.faveButtonText}>Add to Faves</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <Button
+        text={isFave ? 'Removes from Faves' : 'Add to Faves'}
+        onPress={() => dispatch(toggleFave(sessionData.session_id))}
+      />
 
     </ScrollView>
   )
 }
 
-export default Session
+export default connect()(Session)

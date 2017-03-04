@@ -5,11 +5,6 @@ import Session from './Session';
 
 import { fetchSpeaker } from '../../redux/modules/speakerActions';
 
-import {
-  Text,
-  ListView,
-} from 'react-native';
-
 class SessionContainer extends Component {
 
   static route = {
@@ -18,24 +13,20 @@ class SessionContainer extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch, sessionData } = this.props;
-    dispatch(fetchSpeaker(sessionData.speaker));
-  }
-
-  getFaveId(sessionId) {
-
+    dispatch(fetchSpeaker(sessionData.speaker, sessionData.tab));
   }
 
   render() {
-    const { isLoading, sessionData, speaker } = this.props
+    const { isLoading, sessionData, speaker, faves } = this.props
     return (
       isLoading ?
         <Loading /> :
         <Session
           sessionData={sessionData}
-          speaker={speaker}
-          faveId={this.getFaveId(sessionData.session_id)}
+          speaker={sessionData.tab === 'Schedule' ? speaker.speakerData : speaker.faveSpeakerData}
+          isFave={faves.includes(sessionData.session_id)}
         />
     )
   }
@@ -45,6 +36,7 @@ const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
     speaker: state.speaker,
+    faves: state.faves,
   }
 }
 
