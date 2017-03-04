@@ -27,18 +27,13 @@ export default class R10 extends Component {
       <Provider store={Store}>
         <NavigationProvider context={navigationContext}>
           <StatusBar barStyle="light-content" />
-          <StackNavigation initialRoute={Router.getRoute('layout')} />
+          <StackNavigation
+            id="root"
+            navigatorUID="Root"
+            initialRoute={Router.getRoute('layout')}
+          />
         </NavigationProvider>
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: '#F5FCFF',
-  },
-});
