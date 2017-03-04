@@ -14,6 +14,13 @@ export default StyleSheet.create({
     paddingBottom: 10,
     color: '#9963ea'
   },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  expandHideIcon: {
+    width: 20
+  },
   description: {
     fontSize: 18
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  Animated,
   Text,
   LayoutAnimation,
   TouchableOpacity,
@@ -15,26 +16,41 @@ class Conduct extends Component {
 
     this.state = {
       descriptionVisible: false,
+      spinValue: new Animated.Value(0)
     }
   }
 
   onPress = () => {
     const config = LayoutAnimation.create(400, 'linear', 'opacity');
-    LayoutAnimation.configureNext(config);
     this.setState({ descriptionVisible: !this.state.descriptionVisible })
+    LayoutAnimation.configureNext(config)
+    
+    this.state.spinValue.setValue(0);
+    Animated.timing(
+      this.state.spinValue,
+      {
+        toValue: 1,
+        duration: 400,
+      }
+    ).start();
   }
 
-  descriptionVisibilitySymbol = () => this.state.descriptionVisible ? '-' : '+';
-
   render() {
+    const spin = this.state.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    });
+    const animatedStyles = {
+      transform: [
+        { rotate: spin },
+      ],
+    };
     const { title, description } = this.props;
     return (
       <View>
-        <TouchableOpacity onPress={this.onPress}>
-          <Text style={styles.title}>
-            {this.descriptionVisibilitySymbol}
-            {title}
-          </Text>
+        <TouchableOpacity style={styles.button} onPress={this.onPress}>
+          <Animated.Text style={[styles.title, styles.expandHideIcon, animatedStyles]}>{this.state.descriptionVisible ? '-' : '+'}</Animated.Text>
+          <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>
         {
           this.state.descriptionVisible &&
@@ -45,4 +61,4 @@ class Conduct extends Component {
   }
 }
 
-export default Conduct
+export default Conduct;
