@@ -8,7 +8,7 @@ import Layout from './NavigationLayout';
 import Speaker from '../scenes/Speaker';
 import Maps from '../scenes/Maps';
 
-export default Router = createRouter(() => ({
+const Router = createRouter(() => ({
   layout: () => Layout,
   about: () => About,
   schedule: () => Schedule,
@@ -17,3 +17,5 @@ export default Router = createRouter(() => ({
   speaker: () => Speaker,
   maps: () => Maps,
 }));
+
+export default Router;
