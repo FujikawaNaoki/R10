@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Text,
-  Image,
   ListView,
   TouchableHighlight,
   View
@@ -11,8 +10,6 @@ import { formatSecondsToTime } from '../../helpers/timeFormatHelpers'
 import { goToSession } from '../../helpers/navigationHelpers'
 
 import styles from './styles'
-import { colors, platformIcons } from '../../config/styles'
-import Icon from 'react-native-vector-icons/Ionicons'
 
 import FaveHeart from '../../components/FaveHeart'
 
