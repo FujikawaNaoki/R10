@@ -1,4 +1,6 @@
-import {Dimensions} from 'react-native'
+import React from 'react'
+import { Dimensions, Platform } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient';
 
 export const colors = {
   black: '#000',
@@ -11,12 +13,29 @@ export const colors = {
 }
 
 export const typography = {
-  fontMain: 'Montserrat',
-  fontMainLight: 'Montserrat-Light'
+  ...Platform.select({
+    ios: {
+      fontMain: 'Montserrat',
+    },
+    android: {
+      fontMain: 'Montserrat-Regular',
+    },
+    fontMainLight: 'Montserrat-Light'
+  })
 }
-
 
 export const dimensions = {
   screenWidth: Dimensions.get('window').width,
   screenHeight: Dimensions.get('window').height
+}
+
+export const platformIcons = {
+  ...Platform.select({
+    ios: {
+      heart: 'ios-heart',
+    },
+    android: {
+      heart: 'md-heart',
+    }
+  })
 }
