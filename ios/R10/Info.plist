@@ -4,8 +4,6 @@
   <dict>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
-    <key>CFBundleDisplayName</key>
-    <string>R10</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -53,6 +51,8 @@
     </dict>
     <key>UIAppFonts</key>
     <array>
+      <string>Montserrat-Light.ttf</string>
+      <string>Montserrat-Regular.ttf</string>
       <string>Entypo.ttf</string>
       <string>EvilIcons.ttf</string>
       <string>FontAwesome.ttf</string>
@@ -63,8 +63,6 @@
       <string>Octicons.ttf</string>
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
-      <string>Montserrat-Light.ttf</string>
-      <string>Montserrat-Regular.ttf</string>
     </array>
   </dict>
 </plist>
