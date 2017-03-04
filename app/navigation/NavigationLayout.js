@@ -1,5 +1,9 @@
-import React from 'react';
-import { Text } from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  Text,
+  TouchableWithoutFeedback,
+} from 'react-native';
 
 import {
   StackNavigation,
@@ -10,11 +14,31 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './styles';
-import { colors } from '../config/styles';
+import { colors, typography, platformIcons } from '../config/styles'
+
+import LinearGradient from 'react-native-linear-gradient';
+
+const defaultRouteConfig = {
+  navigationBar: {
+    titleStyle: {
+      color: colors.white,
+      fontSize: 20,
+      fontFamily: typography.fontMain,
+      fontWeight: 'bold'
+    },
+    tintColor: colors.white,
+    renderBackground: () => (
+      <LinearGradient
+        start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 0.0 }}
+        colors={[colors.red, colors.purple]}
+        style={styles.linearGradient} />
+    ),
+  }
+}
 
 // Treat the TabScreen route like any other route -- you may want to set
 // it as the initial route for a top-level StackNavigation
-export default class Layout extends React.Component {
+class Layout extends Component {
   renderIcon(icon, isSelected) {
     return (
       <Icon
@@ -33,11 +57,10 @@ export default class Layout extends React.Component {
   }
 
   render() {
-
     return (
       <TabNavigation
         id="main"
-        navigatorUID="main"
+        navigatorUID="Main"
         initialTab="schedule"
         tabBarColor="#000"
       >
@@ -48,10 +71,44 @@ export default class Layout extends React.Component {
           renderIcon={isSelected => this.renderIcon("ios-calendar", isSelected)}
           renderTitle={isSelected => this.renderTitle("Schedule", isSelected)}
         >
+
+          <TouchableWithoutFeedback onPress={this.tabChange}>
+            <StackNavigation
+              id="schedule"
+              navigatorUID="Schedule"
+              initialRoute={Router.getRoute('schedule', { tab: 'Schedule' })}
+              defaultRouteConfig={defaultRouteConfig}
+            />
+          </TouchableWithoutFeedback>
+        </TabItem>
+
+        <TabItem
+          id="faves"
+          title="Faves"
+          selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => this.renderIcon(platformIcons.heart, isSelected)}
+          renderTitle={isSelected => this.renderTitle("Faves", isSelected)}
+        >
           <StackNavigation
-            id="schedule"
-            navigatorUID="schedule"
-            initialRoute={Router.getRoute('schedule')}
+            id="faves"
+            navigatorUID="Faves"
+            initialRoute={Router.getRoute('schedule', { tab: 'Faves' })}
+            defaultRouteConfig={defaultRouteConfig}
+          />
+        </TabItem>
+
+        <TabItem
+          id="maps"
+          title="Maps"
+          selectedStyle={styles.selectedTab}
+          renderIcon={(isSelected) => this.renderIcon("ios-map", isSelected)}
+          renderTitle={isSelected => this.renderTitle("Maps", isSelected)}
+        >
+          <StackNavigation
+            id="maps"
+            navigatorUID="Maps"
+            initialRoute={Router.getRoute('maps')}
+            defaultRouteConfig={defaultRouteConfig}
           />
         </TabItem>
 
@@ -64,12 +121,15 @@ export default class Layout extends React.Component {
         >
           <StackNavigation
             id="about"
-            navigatorUID="about"
+            navigatorUID="About"
             initialRoute={Router.getRoute('about')}
+            defaultRouteConfig={defaultRouteConfig}
           />
         </TabItem>
 
-      </TabNavigation>
+      </TabNavigation >
     );
   }
 }
+
+export default connect()(Layout);
