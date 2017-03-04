@@ -1,6 +1,4 @@
-import React from 'react'
 import { Dimensions, Platform } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient';
 
 export const colors = {
   black: '#000',
