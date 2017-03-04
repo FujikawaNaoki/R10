@@ -92,7 +92,7 @@ class Layout extends Component {
           <StackNavigation
             id="faves"
             navigatorUID="Faves"
-            initialRoute={Router.getRoute('schedule', { tab: 'Faves' })}
+            initialRoute={Router.getRoute('faves', { tab: 'Faves' })}
             defaultRouteConfig={defaultRouteConfig}
           />
         </TabItem>
