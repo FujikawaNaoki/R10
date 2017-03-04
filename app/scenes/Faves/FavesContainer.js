@@ -3,36 +3,22 @@ import { connect } from 'react-redux';
 import { Schedule } from '../Schedule';
 import Loading from '../../components/Loading';
 
-import {
-  Text,
-  ListView,
-} from 'react-native';
+import { ListView } from 'react-native';
 
-import { fetchSessions } from '../../redux/modules/sessionActions';
-import { loadFaves } from '../../redux/modules/favesActions';
 import { formatSessionData } from '../../helpers/dataFormatHelpers'
 
-class FavesContainer extends Component {
+class ScheduleContainer extends Component {
   static route = {
     navigationBar: {
       title: 'Faves',
     }
   }
-  constructor() {
-    super();
-    this.sessionFilter = 'faves'
-  }
 
-  componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchSessions());
-    dispatch(loadFaves())
-  }
+  formatSessionData = () => {
+    const { faves } = this.props;
+    const sessions = this.props.sessions.filter(session => faves.includes(session.session_id))
 
-  formatSessionData = (sessions, faves) => {
-    const sessionsFilter = sessions.filter(session => faves.includes(session.session_id))
-
-    const structuredSessioneData = formatSessionData(sessionsFilter)
+    const structuredSessioneData = formatSessionData(sessions)
     return dataSource.cloneWithRowsAndSections(
       structuredSessioneData.dataBlob,
       structuredSessioneData.sectionIds,
@@ -41,9 +27,11 @@ class FavesContainer extends Component {
   }
 
   render() {
-    const { sessions, faves } = this.props;
+    const { isLoading, route, faves } = this.props;
     return (
-      <Schedule schedule={this.formatSessionData(sessions, faves)} goToSessionHistory='faves' />
+      isLoading ?
+        <Loading /> :
+        <Schedule faves={faves} schedule={this.formatSessionData()} goToSessionHistory={route.params.tab} />
     )
   }
 }
@@ -57,10 +45,11 @@ const mapStateToProps = state => {
   return {
     sessions: state.session.sessionData,
     faves: state.faves,
+    isLoading: state.isLoading
   }
 }
 
-export default connect(mapStateToProps)(FavesContainer);
+export default connect(mapStateToProps)(ScheduleContainer);
 
 
 
