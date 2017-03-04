@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
 
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
 
 import { formatSecondsToTime } from '../../helpers/timeFormatHelpers'
 import { toggleFave } from '../../redux/modules/favesActions'
 import { goToSpeaker } from '../../helpers/navigationHelpers'
 
 import styles from './styles'
-import { colors, platformIcons } from '../../config/styles'
+import FaveHeart from '../../components/FaveHeart'
+
 
 import Button from '../../components/Button'
 
@@ -24,14 +24,7 @@ const Session = ({ sessionData, speaker, isFave, dispatch }) => {
     <ScrollView style={styles.container}>
       <View style={styles.faveContainer}>
         <Text style={styles.location}>{sessionData.location}</Text>
-        {
-          isFave &&
-          <Icon
-            name={platformIcons.heart}
-            size={25}
-            color={colors.red}
-          />
-        }
+        <FaveHeart isFave={isFave} />
       </View>
       <Text style={styles.title}>{sessionData.title}</Text>
       <Text style={styles.startTime}>{formatSecondsToTime(sessionData.start_time)}</Text>
