@@ -18,6 +18,8 @@ import { colors, typography, platformIcons } from '../config/styles'
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import Router from './router'
+
 const defaultRouteConfig = {
   navigationBar: {
     titleStyle: {
