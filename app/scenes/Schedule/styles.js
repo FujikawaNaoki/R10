@@ -24,6 +24,10 @@ export default StyleSheet.create({
     fontFamily: typography.fontMain,
     color: colors.black
   },
+    faveContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   location: {
     fontSize: 18,
     fontFamily: typography.fontMain,
