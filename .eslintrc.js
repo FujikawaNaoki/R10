@@ -5,7 +5,7 @@ module.exports = {
         "plugin:react/recommended"
     ],
     "env": {
-        "browser": true,
+        "node": true,
         "es6": true
     },
     "plugins": [
@@ -20,6 +20,7 @@ module.exports = {
     },
     "rules": {
         "no-console": 1,
-        "no-unused-vars": 1
+        "no-unused-vars": 1,
+        "react/prop-types": 0 
     }
 }
