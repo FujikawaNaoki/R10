@@ -7,6 +7,10 @@ export default StyleSheet.create({
     padding: 20,
     paddingBottom: 30
   },
+  faveContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   location: {
     fontSize: 25,
     fontFamily: typography.fontMain,
@@ -55,19 +59,4 @@ export default StyleSheet.create({
     fontFamily: typography.fontMain,
     marginLeft: 20
   },
-  faveButton: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: dimensions.screenWidth * 0.7,
-    backgroundColor: colors.blue,
-    height: 50,
-    borderRadius: 25,
-    marginBottom: 25,
-  },
-  faveButtonText: {
-    fontSize: 20,
-    color: colors.white,
-    fontFamily: typography.fontMain,
-  }
 })
