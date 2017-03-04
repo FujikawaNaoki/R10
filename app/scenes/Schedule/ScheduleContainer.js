@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import Loading from '../../components/Loading';
 
-import { formatSessionData } from '../../helpers/dataFormatHelpers';
+import { ListView } from 'react-native';
 
-import {
-  Text,
-  ListView,
-} from 'react-native';
-
-import { fetchSchedule } from '../../redux/modules/scheduleActions';
+import { fetchSessions } from '../../redux/modules/sessionActions';
+import { loadFaves } from '../../redux/modules/favesActions';
+import { formatSessionData } from '../../helpers/dataFormatHelpers'
 
 class ScheduleContainer extends Component {
   static route = {
@@ -19,17 +16,29 @@ class ScheduleContainer extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(fetchSchedule());
+    dispatch(fetchSessions());
+    dispatch(loadFaves())
+  }
+
+  formatSessionData = () => {
+    const { sessions } = this.props;
+
+    const structuredSessioneData = formatSessionData(sessions)
+    return dataSource.cloneWithRowsAndSections(
+      structuredSessioneData.dataBlob,
+      structuredSessioneData.sectionIds,
+      structuredSessioneData.rowIds,
+    )
   }
 
   render() {
-    const { isLoading, schedule } = this.props;
+    const { isLoading, route, faves } = this.props;
     return (
       isLoading ?
         <Loading /> :
-        <Schedule isLoading={isLoading} schedule={schedule} />
+        <Schedule faves={faves} schedule={this.formatSessionData()} goToSessionHistory={route.params.tab} />
     )
   }
 }
@@ -41,12 +50,9 @@ const dataSource = new ListView.DataSource({
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.isLoading,
-    schedule: dataSource.cloneWithRowsAndSections(
-      state.schedule.sessionData.dataBlob,
-      state.schedule.sessionData.sectionIds,
-      state.schedule.sessionData.rowIds,
-    ),
+    sessions: state.session.sessionData,
+    faves: state.faves,
+    isLoading: state.isLoading
   }
 }
 
