@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import { colors, platformIcons } from '../../config/styles'
+import { colors, platformIconNames } from '../../config/styles'
 
 const FaveHeart = ({ isFave }) => {
   return (
@@ -10,7 +10,7 @@ const FaveHeart = ({ isFave }) => {
     {
       isFave &&
       <Icon
-        name={platformIcons.heart}
+        name={platformIconNames.heart}
         size={25}
         color={colors.red}
       />
