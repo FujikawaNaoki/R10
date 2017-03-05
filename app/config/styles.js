@@ -27,13 +27,19 @@ export const dimensions = {
   screenHeight: Dimensions.get('window').height
 }
 
-export const platformIcons = {
+export const platformIconNames = {
   ...Platform.select({
     ios: {
       heart: 'ios-heart',
+      calendar: 'ios-calendar',
+      map: 'ios-map',
+      about: 'ios-information-circle',
     },
     android: {
       heart: 'md-heart',
+      calendar: 'md-calendar',
+      map: 'md-map',
+      about: 'md-information-circle'
     }
   })
 }
