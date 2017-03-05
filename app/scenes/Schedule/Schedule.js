@@ -18,15 +18,26 @@ const Schedule = ({ schedule, goToSessionHistory, faves }) => (
     <ListView
       dataSource={schedule}
       renderRow={data => (
-        <TouchableHighlight onPress={() => goToSession(goToSessionHistory, { ...data, tab: goToSessionHistory })}>
-          <View style={styles.row}>
-            <Text style={styles.title}>{data.title}</Text>
-            <View style={styles.faveContainer}>
-              <Text style={styles.location}>{data.location}</Text>
-              <FaveHeart isFave={faves.includes(data.session_id)} />
+        <View>
+          {data.speaker ?
+            <TouchableHighlight onPress={() => goToSession(goToSessionHistory, { ...data, tab: goToSessionHistory })}>
+              <View style={styles.row}>
+                <Text style={styles.title}>{data.title}</Text>
+                <View style={styles.faveContainer}>
+                  <Text style={styles.location}>{data.location}</Text>
+                  <FaveHeart isFave={faves.includes(data.session_id)} />
+                </View>
+              </View>
+            </TouchableHighlight> :
+            <View style={styles.row}>
+              <Text style={styles.title}>{data.title}</Text>
+              <View style={styles.faveContainer}>
+                <Text style={styles.location}>{data.location}</Text>
+                <FaveHeart isFave={faves.includes(data.session_id)} />
+              </View>
             </View>
-          </View>
-        </TouchableHighlight>
+          }
+        </View>
       )}
 
       renderSectionHeader={(data, sectionId) => (
