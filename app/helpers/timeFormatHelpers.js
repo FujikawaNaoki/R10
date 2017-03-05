@@ -1,3 +1,3 @@
-export const formatSecondsToTime = seconds => (
-  new Date(seconds * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-)
+import moment from 'moment';
+
+export const formatSecondsToTime = seconds => moment(seconds * 1000).format('h:00 A')
