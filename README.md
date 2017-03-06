@@ -1,7 +1,7 @@
 # Project - R10
-<p align="center" style='height:450px'>
+<p align="center">
     <a href="https://scottfuoco.github.io/Aloha-Project-Pt2/">
-        <img src="R10.png" alt="Aloha Apparel Image">
+        <img src="R10.png" alt="Aloha Apparel Image" style='height:300px'>
     </a>
 </p>
 
