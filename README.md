@@ -1,6 +1,6 @@
 # Project - R10
 <p align="center">
-  <img src="R10.png" alt="Aloha Apparel Image" style='border:1px solid black'>Ï
+  <img src="R10.png" alt="R10 Image" />Ï
 </p>
 
 ---
