@@ -1,4 +1,4 @@
-# Project - R10
+# R10 - Project
 <p align="center">
   <img src="R10.png" alt="R10 Image" />Ï
 </p>
